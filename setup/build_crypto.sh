@@ -28,7 +28,7 @@ xcrun lipo -create .build/iphoneos/arm64/libcrypto.a \
                    .build/iphonesimulator/x86_64/libcrypto.a \
                    .build/iphonesimulator/i386/libcrypto.a \
                    -o "$SCRIPT_DIR/../Libraries/openssl/lib/libcrypto.a"
-cp -rf $TDIR/openssl-$OPENSSL_VERSION/include "$SCRIPT_DIR/../Libraries/openssl/"
+/bin/cp -rf $TDIR/openssl-$OPENSSL_VERSION/include "$SCRIPT_DIR/../Libraries/openssl/"
 
 cd -
 rm -rf $TDIR
