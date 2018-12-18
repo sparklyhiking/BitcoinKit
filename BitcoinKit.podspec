@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.author = { 'BitcoinKit developers' => 'usatie@yenom.tech' }
 
   spec.requires_arc = true
-  spec.source = { git: 'https://github.com/yenom/BitcoinKit.git', tag: "v#{spec.version}" }
+  spec.source = { git: 'https://github.com/sparklyhiking/BitcoinKit.git', tag: "v#{spec.version}" }
   spec.source_files = 'BitcoinKit/**/*.{h,m,swift}', 'Sources/BitcoinKit/**/*.{h,m,swift}'
   spec.private_header_files = 'BitcoinKit/**/BitcoinKitPrivate.h'
   spec.exclude_files = 'Sources/**/LinuxSupport.swift'
