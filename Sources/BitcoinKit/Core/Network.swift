@@ -25,22 +25,22 @@
 
 import Foundation
 
-public class Network {
+open class Network {
     public static let mainnet: Network = BCHMainnet()
     public static let testnet: Network = BCHTestnet()
     public static let mainnetBTC: Network = BTCMainnet()
     public static let testnetBTC: Network = BTCTestnet()
 
-    public var name: String { return "" }
-    public var alias: String { return "" }
-    public var scheme: String { return "" }
+    open var name: String { return "" }
+    open var alias: String { return "" }
+    open var scheme: String { return "" }
 
     // version byte
-    var pubkeyhash: UInt8 { return 0 }
-    var privatekey: UInt8 { return 0 }
-    var scripthash: UInt8 { return 0 }
-    var xpubkey: UInt32 { return 0 }
-    var xprivkey: UInt32 { return 0 }
+    open var pubkeyhash: UInt8 { return 0 }
+    open var privatekey: UInt8 { return 0 }
+    open var scripthash: UInt8 { return 0 }
+    open var xpubkey: UInt32 { return 0 }
+    open var xprivkey: UInt32 { return 0 }
 
     var magic: UInt32 { return 0 }
     public var port: UInt32 { return 0 }
@@ -48,7 +48,7 @@ public class Network {
     var checkpoints: [Checkpoint] { return [] }
     var genesisBlock: Data { return Data() }
 
-    fileprivate init() {}
+    public init() {}
 }
 
 extension Network: Equatable {
@@ -170,19 +170,21 @@ public class Mainnet: Network {
     public override var alias: String {
         return "mainnet"
     }
-    override var pubkeyhash: UInt8 {
-        return 0x00
-    }
-    override var privatekey: UInt8 {
+    override open var privatekey: UInt8 {
         return 0x80
     }
-    override var scripthash: UInt8 {
+
+    open override var pubkeyhash: UInt8 {
+        return 0x00
+    }
+
+    override open var scripthash: UInt8 {
         return 0x05
     }
-    override var xpubkey: UInt32 {
+    open override var xpubkey: UInt32 {
         return 0x0488b21e
     }
-    override var xprivkey: UInt32 {
+    open override var xprivkey: UInt32 {
         return 0x0488ade4
     }
     public override var port: UInt32 {
@@ -231,19 +233,19 @@ public class Testnet: Network {
     public override var alias: String {
         return "regtest"
     }
-    override var pubkeyhash: UInt8 {
+    open override var pubkeyhash: UInt8 {
         return 0x6f
     }
-    override var privatekey: UInt8 {
+    open override var privatekey: UInt8 {
         return 0xef
     }
-    override var scripthash: UInt8 {
+    open override var scripthash: UInt8 {
         return 0xc4
     }
-    override var xpubkey: UInt32 {
+    open override var xpubkey: UInt32 {
         return 0x043587cf
     }
-    override var xprivkey: UInt32 {
+    open override var xprivkey: UInt32 {
         return 0x04358394
     }
     public override var port: UInt32 {
