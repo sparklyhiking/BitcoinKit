@@ -57,4 +57,39 @@ class HDKeyChainTests: XCTestCase {
         XCTAssertEqual(m0122prv.extendedPublicKey().extended(), "xpub6FHa3pjLCk84BayeJxFW2SP4XRrFd1JYnxeLeU8EqN3vDfZmbqBqaGJAyiLjTAwm6ZLRQUMv1ZACTj37sR62cfN7fe5JnJ7dh8zL4fiyLHV")
         XCTAssertEqual(m0122prv.extended(), "xprvA2JDeKCSNNZky6uBCviVfJSKyQ1mDYahRjijr5idH2WwLsEd4Hsb2Tyh8RfQMuPh7f7RtyzTtdrbdqqsunu5Mm3wDvUAKRHSC34sJ7in334")
     }
+    
+    func testHDKeyChain_private_key_31_bytes_1() {
+        let seed = Data(hex: "19502a4da953671250f05068576f3437fef68331fd184a7a2e49ae2707db522b6c5bf38259791c48329717a96cd6713255ac20ddc727d692b8bf5a6a27cad029")!
+        
+        let keychain = HDKeychain(seed: seed, network: .mainnetBTC)
+        let privateKey = try! keychain.derivedKey(path: "m/44'")
+        
+        
+        XCTAssertEqual(privateKey.extendedPublicKey().extended(), "xpub68rykGyJxxSq2TfLjtwb2RdBt3fnKsbqgZTsuMfR1CJtKqmrCEbuaHjkvkL7rysfxVydrCDgjrBsYYytUWBYZm3UkjS1oNnF8SRAXTjtMuD")
+        XCTAssertEqual(privateKey.extended(), "xprv9usdLmSR8atXoyasdsQafHgTL1qHvQszKLYH6yFoSrmuT3ShehHf2VRH5VAxa2qFftKpgWNNMnmeKxhUpQVAoTJBb8LGWwqVMBfAHAKiBm8")
+    }
+    
+    func testHDKeyChain_private_key_31_bytes_2() {
+        let seed = Data(hex: "19502a4da953671250f05068576f3437fef68331fd184a7a2e49ae2707db522b6c5bf38259791c48329717a96cd6713255ac20ddc727d692b8bf5a6a27cad029")!
+        
+        let keychain = HDKeychain(seed: seed, network: .mainnetBTC)
+        let privateKey = try! keychain.derivedKey(path: "m/44'/175'")
+        
+        
+        XCTAssertEqual(privateKey.extendedPublicKey().extended(), "xpub6A6x3t3hfK3seYFy6S7K5HuB1unyHxwLEhm8dY2GUwctkumkYpNa8fA8E5qLL2C6utqAunWHjYTUWTAizB5LhgjvzN7G3rPb5jxGj4jtPXp")
+        XCTAssertEqual(privateKey.extended(), "xprv9w7beNWopwVaS4BVzQaJi9xSTsxUtWDUsUqXq9cevc5ut7Sc1H4KarqeNoC1hQSsL8EoUqDsokgDgTeh63Evb36ziTya8izhb4VDTZELoHR")
+    }
+    
+    func testHDKeyChain_private_key_31_bytes_3() {
+        let seed = Data(hex: "19502a4da953671250f05068576f3437fef68331fd184a7a2e49ae2707db522b6c5bf38259791c48329717a96cd6713255ac20ddc727d692b8bf5a6a27cad029")!
+        
+        let keychain = HDKeychain(seed: seed, network: .mainnetBTC)
+        let privateKey = try! keychain.derivedKey(path: "m/44'/175'/0'")
+        
+        
+        XCTAssertEqual(privateKey.extendedPublicKey().extended(), "xpub6CszeXzpHwiu37iaJ7S7p9YoyF4w6NMPeXted3AuXwCK7yiHowzE1gpFTzGaATVnHZsarG3jGBEagMxUWUcjjcxrSexXjHcy7TQRJgPKxcU")
+        XCTAssertEqual(privateKey.extended(), "xprv9yteF2TvTaAbpde7C5u7T1c5RDESgudYHJy3pemHybfLFBP9GQfyTtVmcjmFfyVok5a4EXmNFbZK6R42jQQRS2PVwbaYGcueutPdVvJjr17")
+    }
+    
+    
 }
