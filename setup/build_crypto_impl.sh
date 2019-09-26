@@ -28,6 +28,6 @@ make clean
 make depend
 make build_crypto
 
-cp libcrypto.a "$TARGETDIR/libcrypto.a"
+/bin/cp libcrypto.a "$TARGETDIR/libcrypto.a"
 
 exit 0

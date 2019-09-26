@@ -118,7 +118,15 @@
 - (instancetype)initWithPrivateKey:(NSData *)privateKey publicKey:(NSData *)publicKey chainCode:(NSData *)chainCode depth:(uint8_t)depth fingerprint:(uint32_t)fingerprint childIndex:(uint32_t)childIndex {
     self = [super init];
     if (self) {
-        _privateKey = privateKey;
+        if (privateKey && privateKey.length > 0 && privateKey.length < 33) {
+            NSMutableData *privateKey32 = [NSMutableData data];
+            uint8_t padding = 0;
+            [privateKey32 appendBytes:&padding length:(32 - privateKey.length)];
+            [privateKey32 appendData: privateKey];
+            _privateKey = privateKey32;
+        } else {
+            _privateKey = privateKey;
+        }
         _publicKey = publicKey;
         _chainCode = chainCode;
         _depth = depth;
@@ -130,6 +138,7 @@
 
 - (_HDKey *)derivedAtIndex:(uint32_t)index hardened:(BOOL)hardened {
     BN_CTX *ctx = BN_CTX_new();
+ 
 
     NSMutableData *data = [NSMutableData data];
     if (hardened) {
