@@ -125,8 +125,8 @@ public class _HDKey {
     public let childIndex: UInt32
     
     public init(privateKey: Data?, publicKey: Data, chainCode: Data, depth: UInt8, fingerprint: UInt32, childIndex: UInt32) {
-        if (privateKey && privateKey.count > 0 && privateKey.count < 33) {
-            self.privateKey = Data(count: 32 - privateKey.count) + privateKey
+        if ((privateKey != nil) && privateKey!.count > 0 && privateKey!.count < 33) {
+            self.privateKey = Data(count: 32 - privateKey!.count) + privateKey!
         } else {
             self.privateKey = privateKey
         }
